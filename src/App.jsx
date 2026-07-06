@@ -149,52 +149,50 @@ function WhiteFade({ onComplete }) {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CUSTOM CURSOR
+   FILM SECTION (interior video)
 ═══════════════════════════════════════════════════════════════ */
-function CustomCursor() {
-  const ringRef = useRef(null);
-  const dotRef = useRef(null);
-  const pos = useRef({ x: -100, y: -100 });
-  const current = useRef({ x: -100, y: -100 });
-  const rafRef = useRef(null);
-  const hoverRef = useRef(false);
+const fadeUp = {
+  hidden: { opacity: 0, y: 34 },
+  visible: { opacity: 1, y: 0 },
+};
+const sectionVp = { once: true, margin: '-10% 0px' };
 
-  useEffect(() => {
-    if (window.matchMedia('(hover: none)').matches) return;
-    const lerp = (a, b, t) => a + (b - a) * t;
-
-    const onMove = (e) => { pos.current.x = e.clientX; pos.current.y = e.clientY; };
-
-    const onEnter = () => { hoverRef.current = true; };
-    const onLeave = () => { hoverRef.current = false; };
-
-    document.addEventListener('mousemove', onMove);
-    document.querySelectorAll('a,button,.exhibition-item__img-wrap').forEach(el => {
-      el.addEventListener('mouseenter', onEnter);
-      el.addEventListener('mouseleave', onLeave);
-    });
-
-    const tick = () => {
-      current.current.x = lerp(current.current.x, pos.current.x, 0.12);
-      current.current.y = lerp(current.current.y, pos.current.y, 0.12);
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${current.current.x}px, ${current.current.y}px) scale(${hoverRef.current ? 2.2 : 1})`;
-      }
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${pos.current.x}px, ${pos.current.y}px)`;
-      }
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-
-    return () => { document.removeEventListener('mousemove', onMove); cancelAnimationFrame(rafRef.current); };
-  }, []);
-
+function FilmSection() {
   return (
-    <>
-      <div className="cursor-ring" ref={ringRef} aria-hidden="true" />
-      <div className="cursor-dot" ref={dotRef} aria-hidden="true" />
-    </>
+    <section className="film" id="film">
+      <motion.div
+        className="film__copy"
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={sectionVp}
+        transition={{ duration: 0.85, ease: 'easeOut' }}
+      >
+        <span className="kicker">Interior film</span>
+        <h2>Motion is used softly,<br />like daylight moving<br />through a room.</h2>
+        <p>
+          Spaces are best understood in motion — the way light
+          shifts across a surface, the sequence of thresholds.
+          This film distils the studio's approach to spatial storytelling.
+        </p>
+      </motion.div>
+      <motion.div
+        className="film__frame"
+        initial={{ opacity: 0, scale: 0.97 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={sectionVp}
+        transition={{ duration: 1.0, ease: 'easeOut' }}
+      >
+        <video
+          src="/media/interior-film.mp4"
+          poster="/media/studio-interior.jpg"
+          muted
+          loop
+          playsInline
+          autoPlay
+        />
+      </motion.div>
+    </section>
   );
 }
 
@@ -703,17 +701,38 @@ function ContactSection() {
 ═══════════════════════════════════════════════════════════════ */
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__marquee" aria-hidden="true">
-        <div>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <span key={i}>Design Studio by Waseem Saife</span>
+    <footer className="footer" id="footer">
+      {/* Big cinematic name marquee */}
+      <div className="footer__name-marquee" aria-hidden="true">
+        <div className="footer__name-track">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <span key={i}>WASEEM SAIFE</span>
           ))}
         </div>
       </div>
+
+      <div className="footer__grid">
+        <div className="footer__col">
+          <p className="footer__brand">Design Studio by WS</p>
+          <p className="footer__sub">Architecture · Interiors · Spatial Design</p>
+        </div>
+        <div className="footer__col">
+          <span className="footer__label">Studio</span>
+          <strong>Hyderabad, India</strong>
+        </div>
+        <div className="footer__col">
+          <span className="footer__label">Email</span>
+          <a href="mailto:hello@waseemsaife.com">hello@waseemsaife.com</a>
+        </div>
+        <div className="footer__col">
+          <span className="footer__label">Year</span>
+          <strong>{new Date().getFullYear()}</strong>
+        </div>
+      </div>
+
       <div className="footer__bottom">
-        <span>© {new Date().getFullYear()} Design Studio by WS</span>
-        <span>Hyderabad, India</span>
+        <span>© {new Date().getFullYear()} Design Studio by Waseem Saife</span>
+        <span>All rights reserved</span>
       </div>
     </footer>
   );
@@ -825,13 +844,23 @@ function ProjectPresentation({ project, onClose }) {
   useEffect(() => {
     if (!project) return;
     const esc = (e) => { if (e.key === 'Escape') onClose(); };
+    // Stop Lenis from intercepting scroll inside the modal
     document.body.classList.add('modal-open');
+    document.documentElement.setAttribute('data-lenis-prevent', '');
     window.addEventListener('keydown', esc);
-    return () => { document.body.classList.remove('modal-open'); window.removeEventListener('keydown', esc); };
+    return () => {
+      document.body.classList.remove('modal-open');
+      document.documentElement.removeAttribute('data-lenis-prevent');
+      window.removeEventListener('keydown', esc);
+    };
   }, [project, onClose]);
 
   useEffect(() => {
-    if (project && scrollRef.current) scrollRef.current.scrollTop = 0;
+    if (project && scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+      // Refresh ScrollTrigger after deck mounts so inner scroll triggers work
+      setTimeout(() => window.ScrollTrigger?.refresh(), 100);
+    }
   }, [project]);
 
   return (
@@ -875,8 +904,8 @@ function ProjectPresentation({ project, onClose }) {
               </div>
             </div>
 
-            {/* Scrollable deck */}
-            <div className="pres-deck" ref={scrollRef}>
+            {/* Scrollable deck — data-lenis-prevent stops Lenis from blocking native scroll */}
+            <div className="pres-deck" ref={scrollRef} data-lenis-prevent>
               {slides.map((slide, i) => (
                 <PresentationSlide
                   key={slide.src}
@@ -943,7 +972,6 @@ export default function App() {
     <>
       {showIntro && <Loader />}
       {showIntro && <WhiteFade onComplete={() => setShowIntro(false)} />}
-      <CustomCursor />
       <Nav visible={navVisible} onOpenProject={setSelectedProject} />
 
       <main>
@@ -952,6 +980,7 @@ export default function App() {
         <ExhibitionSection onSelectProject={setSelectedProject} />
         <ProjectsGrid onSelectProject={setSelectedProject} />
         <Studio />
+        <FilmSection />
         <ContactSection />
       </main>
 
