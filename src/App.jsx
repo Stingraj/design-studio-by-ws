@@ -706,7 +706,7 @@ function Footer() {
       <div className="footer__name-marquee" aria-hidden="true">
         <div className="footer__name-track">
           {Array.from({ length: 4 }).map((_, i) => (
-            <span key={i} data-text="WASEEM SAIFE">WASEEM SAIFE</span>
+            <span key={i}>WASEEM SAIFE</span>
           ))}
         </div>
       </div>
