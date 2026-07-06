@@ -392,7 +392,7 @@ function ExhibitionItem({ item, index, onSelectProject }) {
           <div className="exh-item__img-inner" ref={imgInnerRef}>
             <img
               src={item.image}
-              alt={item.roomName}
+              alt=""
               className="exh-item__img"
               loading="lazy"
               decoding="async"
@@ -530,7 +530,7 @@ function ProjectCard({ project, index, onSelect }) {
       <div className="project-card__img-wrap">
         <img
           src={coverSrc}
-          alt={project.title}
+          alt=""
           className="project-card__img"
           loading="lazy"
           decoding="async"
@@ -798,12 +798,11 @@ function PresentationSlide({ slide, index, scrollRef }) {
         <img
           ref={imgRef}
           src={slide.src}
-          alt={slide.alt}
+          alt=""
           className="pres-slide__img"
           loading={index < 3 ? 'eager' : 'lazy'}
           decoding="async"
         />
-        <div className="pres-slide__vignette" aria-hidden="true" />
       </div>
 
       {slide.room && (
