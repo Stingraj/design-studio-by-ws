@@ -999,11 +999,12 @@ button {
   flex-shrink: 0;
   padding-right: 80px;
   font-size: clamp(72px, 12vw, 180px);
-  font-weight: 900;
-  letter-spacing: -0.04em;
+  font-weight: 900; /* Bolder font style */
+  letter-spacing: -0.05em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.12); /* Premium light/white marquee color */
+  color: #ffffff; /* Pure white */
   line-height: 1;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 /* Layer Glitch effect layers */
@@ -1022,13 +1023,15 @@ button {
 
 .footer__name-track span::before {
   left: 3px;
-  text-shadow: -2px 0 rgba(255, 0, 193, 0.6); /* Red/Magenta chromatic aberration slice */
+  text-shadow: -3px 0 rgba(255, 0, 193, 0.85); /* Stronger magenta glitch */
+  color: #ffffff;
   animation: footer-glitch-1 2.5s infinite linear alternate-reverse;
 }
 
 .footer__name-track span::after {
   left: -3px;
-  text-shadow: -2px 0 rgba(0, 255, 249, 0.6), 0 2px rgba(0, 255, 249, 0.4); /* Cyan chromatic aberration slice */
+  text-shadow: -3px 0 rgba(0, 255, 249, 0.85), 0 3px rgba(0, 255, 249, 0.5); /* Stronger cyan glitch */
+  color: #ffffff;
   animation: footer-glitch-2 3.5s infinite linear alternate-reverse;
 }
 
