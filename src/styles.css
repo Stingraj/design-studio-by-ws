@@ -219,9 +219,7 @@ button {
   height: 100%;
   object-fit: cover;
   filter: none; /* Keep pure, crystal clear, and undimmed */
-  will-change: transform;
   transform-origin: center center;
-  transition: transform 0.08s ease-out;
 }
 
 /* Soft minimal edge gradients: 80%+ of frame is 100% untouched for original UE5 video quality */

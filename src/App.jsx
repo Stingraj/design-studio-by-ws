@@ -268,13 +268,6 @@ function Hero({ onNavReady }) {
   const currentMouse = useRef({ x: 0, y: 0 });
   const animDoneRef = useRef(false);
 
-  // Fast Instant Video Preload
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.load();
-    }
-  }, []);
-
   // Snappy title & camera reveal animation
   useEffect(() => {
     const gsap = window.gsap;
@@ -320,15 +313,12 @@ function Hero({ onNavReady }) {
     window.addEventListener('mousemove', onMove, { passive: true });
 
     const tick = () => {
-      currentMouse.current.x = lerp(currentMouse.current.x, mousePos.current.x, 0.04);
-      currentMouse.current.y = lerp(currentMouse.current.y, mousePos.current.y, 0.04);
+      currentMouse.current.x = lerp(currentMouse.current.x, mousePos.current.x, 0.05);
+      currentMouse.current.y = lerp(currentMouse.current.y, mousePos.current.y, 0.05);
       const { x, y } = currentMouse.current;
 
       if (videoWrapRef.current) {
-        videoWrapRef.current.style.transform = `translate(${x * 10}px, ${y * 6}px)`;
-      }
-      if (titleRef.current && animDoneRef.current) {
-        titleRef.current.style.transform = `translate(${x * -5}px, ${y * -3}px)`;
+        videoWrapRef.current.style.transform = `translate3d(${x * 8}px, ${y * 5}px, 0)`;
       }
       rafRef.current = requestAnimationFrame(tick);
     };
@@ -362,45 +352,57 @@ function Hero({ onNavReady }) {
     return () => st.kill();
   }, []);
 
-  // High-performance smooth LERP loop for video scrubbing and scene camera scaling
+  // Butter-smooth frame-accurate video scrub loop
   useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return undefined;
+
     let animId;
-    const lerp = (a, b, t) => a + (b - a) * t;
-    let lastSeekTime = -1;
+    let isSeeking = false;
+    let targetTime = 0;
+
+    const performSeek = () => {
+      if (!vid || isSeeking || vid.readyState < 2) return;
+      // 1 frame at 30fps is ~0.0333s. Avoid redundant micro-seeks to identical frame
+      if (Math.abs(vid.currentTime - targetTime) < 0.033) return;
+
+      isSeeking = true;
+      try {
+        vid.currentTime = targetTime;
+      } catch {
+        isSeeking = false;
+      }
+    };
+
+    const onSeeked = () => {
+      isSeeking = false;
+      if (Math.abs(vid.currentTime - targetTime) >= 0.033) {
+        performSeek();
+      }
+    };
+
+    vid.addEventListener('seeked', onSeeked);
 
     const updateLoop = () => {
-      const vid = videoRef.current;
       const dur = vid?.duration && isFinite(vid.duration) && vid.duration > 0 ? vid.duration : videoDuration;
+      const maxScrubTime = dur > 0.5 ? dur - 0.1 : dur;
 
-      currentProgressRef.current = lerp(currentProgressRef.current, targetProgressRef.current, 0.085);
-      const p = Math.max(0, Math.min(1, currentProgressRef.current));
+      // Lenis handles the natural wheel physics; interpolate progress smoothly
+      const targetP = Math.max(0, Math.min(1, targetProgressRef.current));
+      currentProgressRef.current += (targetP - currentProgressRef.current) * 0.18;
+      const p = currentProgressRef.current;
 
-      const targetTime = p * (dur > 0.5 ? dur - 0.05 : dur);
-      if (vid && !vid.seeking && Math.abs(targetTime - lastSeekTime) > 0.012) {
-        try {
-          if (vid.fastSeek && typeof vid.fastSeek === 'function') {
-            vid.fastSeek(targetTime);
-          } else {
-            vid.currentTime = targetTime;
-          }
-          lastSeekTime = targetTime;
-        } catch (e) {
-          // Ignore seek skips
-        }
-      }
-
-      if (vid) {
-        const camScale = 1.0 + p * 0.05;
-        vid.style.transform = `scale(${camScale})`;
-      }
+      targetTime = Math.max(0, Math.min(maxScrubTime, p * maxScrubTime));
+      performSeek();
 
       if (titleRef.current) {
         const titleOpacity = Math.max(0, 1 - p * 3.5);
         const titleY = -p * 80;
         const titleBlur = p * 12;
+        const { x, y } = currentMouse.current;
         titleRef.current.style.opacity = `${titleOpacity}`;
-        titleRef.current.style.filter = `blur(${titleBlur}px)`;
-        titleRef.current.style.transform = `translateY(${titleY}px)`;
+        titleRef.current.style.filter = titleBlur > 0.1 ? `blur(${titleBlur}px)` : 'none';
+        titleRef.current.style.transform = `translate3d(${x * -5}px, ${titleY + y * -3}px, 0)`;
       }
 
       if (scrollHintRef.current) {
@@ -412,13 +414,19 @@ function Hero({ onNavReady }) {
     };
 
     animId = requestAnimationFrame(updateLoop);
-    return () => cancelAnimationFrame(animId);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      vid.removeEventListener('seeked', onSeeked);
+    };
   }, [videoDuration]);
 
   const handleLoadedMetadata = () => {
     if (videoRef.current && isFinite(videoRef.current.duration)) {
       setVideoDuration(videoRef.current.duration);
-      videoRef.current.currentTime = 0;
+      if (videoRef.current.currentTime !== 0) {
+        videoRef.current.currentTime = 0;
+      }
     }
   };
 
@@ -2094,21 +2102,20 @@ export default function App() {
       if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
     });
 
-    // 2. Curtain image reveals and subtle parallax depth
+    // 2. Smooth image reveals without clipping distortion
     const mediaBoxes = document.querySelectorAll('.curtain-reveal');
     mediaBoxes.forEach((box) => {
       const tween = gsap.fromTo(
         box,
-        { clipPath: 'inset(12% 0 12% 0)', opacity: 0.7, scale: 0.98 },
+        { opacity: 0.85, scale: 0.99 },
         {
-          clipPath: 'inset(0% 0 0% 0)',
           opacity: 1,
           scale: 1,
-          duration: 1.1,
-          ease: 'power3.out',
+          duration: 0.85,
+          ease: 'power2.out',
           scrollTrigger: {
             trigger: box,
-            start: 'top 85%',
+            start: 'top 88%',
           },
         }
       );
