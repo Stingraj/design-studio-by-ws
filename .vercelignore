@@ -1,0 +1,6 @@
+node_modules
+dist
+dist-copy-test
+tmp
+.git
+.DS_Store
