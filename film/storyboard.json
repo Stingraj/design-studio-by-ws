@@ -1,0 +1,351 @@
+{
+ "title": "Design Studio by WS \u2014 Two Residences, Hyderabad",
+ "fps": 24,
+ "transitions": {
+  "dissolve": 1.0,
+  "paper": 1.4
+ },
+ "sequence": [
+  {
+   "card": "open",
+   "seconds": 8.0,
+   "lines": [
+    "Design Studio",
+    "by WS"
+   ],
+   "kicker": "A FILM OF TWO RESIDENCES \u00b7 HYDERABAD",
+   "t": "paper"
+  },
+  {
+   "card": "p1",
+   "seconds": 6.0,
+   "lines": [
+    "F-204"
+   ],
+   "sub": "Residence of Mr. Samad",
+   "kicker": "01 \u2014 3BHK APARTMENT \u00b7 2026",
+   "t": "paper"
+  },
+  {
+   "shot": "p1-s05",
+   "seconds": 12,
+   "move": "push",
+   "cap": [
+    "01",
+    "Formal living"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s06",
+   "seconds": 11,
+   "move": "truck_l",
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s08",
+   "seconds": 12,
+   "move": "arc_r",
+   "cap": [
+    "02",
+    "Informal living"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s09",
+   "seconds": 11,
+   "move": "push",
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s10",
+   "seconds": 11,
+   "move": "truck_r",
+   "cap": [
+    "03",
+    "Dining"
+   ],
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s12",
+   "seconds": 12,
+   "move": "push",
+   "cap": [
+    "04",
+    "Master bedroom"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s13",
+   "seconds": 11,
+   "move": "arc_l",
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s15",
+   "seconds": 11,
+   "move": "truck_r",
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s17",
+   "seconds": 11,
+   "move": "rise",
+   "cap": [
+    "05",
+    "Guest bedroom"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s18",
+   "seconds": 10,
+   "move": "truck_l",
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s22",
+   "seconds": 11,
+   "move": "push",
+   "cap": [
+    "06",
+    "Kids bedroom"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s23",
+   "seconds": 11,
+   "move": "arc_r",
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s27",
+   "seconds": 11,
+   "move": "push",
+   "cap": [
+    "07",
+    "Kitchen"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p1-s29",
+   "seconds": 10,
+   "move": "truck_l",
+   "cap": [
+    "08",
+    "Crockery unit"
+   ],
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "card": "p2",
+   "seconds": 6.0,
+   "lines": [
+    "F-1002"
+   ],
+   "sub": "Residence of Mr. Srinivas Reddy",
+   "kicker": "02 \u2014 3BHK APARTMENT \u00b7 2026",
+   "t": "paper"
+  },
+  {
+   "shot": "p2-s05",
+   "seconds": 12,
+   "move": "push",
+   "cap": [
+    "01",
+    "Formal living"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s06",
+   "seconds": 12,
+   "move": "truck_r",
+   "cap": [
+    "02",
+    "Fluted glass threshold"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s07",
+   "seconds": 11,
+   "move": "arc_l",
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s09",
+   "seconds": 11,
+   "move": "push",
+   "cap": [
+    "03",
+    "Informal living"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s10",
+   "seconds": 11,
+   "move": "truck_l",
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s13",
+   "seconds": 12,
+   "move": "arc_r",
+   "cap": [
+    "04",
+    "Dining"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s14",
+   "seconds": 10,
+   "move": "rise",
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s16",
+   "seconds": 11,
+   "move": "push",
+   "cap": [
+    "05",
+    "Children's bedroom"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s17",
+   "seconds": 10,
+   "move": "truck_r",
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s20",
+   "seconds": 11,
+   "move": "push",
+   "cap": [
+    "06",
+    "Guest bedroom"
+   ],
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s23",
+   "seconds": 11,
+   "move": "arc_l",
+   "cap": [
+    "07",
+    "Master bedroom"
+   ],
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s27",
+   "seconds": 11,
+   "move": "push",
+   "cap": [
+    "08",
+    "Kitchen"
+   ],
+   "t": "dissolve",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s29",
+   "seconds": 10,
+   "move": "truck_r",
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "shot": "p2-s31",
+   "seconds": 11,
+   "move": "rise",
+   "cap": [
+    "09",
+    "Balcony"
+   ],
+   "t": "paper",
+   "strength": 1.3
+  },
+  {
+   "card": "close",
+   "seconds": 9.0,
+   "lines": [
+    "Design Studio",
+    "by WS"
+   ],
+   "kicker": "ARCHITECTURE \u00b7 INTERIORS \u00b7 SPATIAL STRATEGY"
+  }
+ ],
+ "preview": {
+  "res": [
+   960,
+   540
+  ],
+  "samples": 8,
+  "sequence": [
+   {
+    "card": "open",
+    "seconds": 3.5,
+    "lines": [
+     "Design Studio",
+     "by WS"
+    ],
+    "kicker": "A FILM OF TWO RESIDENCES \u00b7 HYDERABAD",
+    "t": "paper"
+   },
+   {
+    "shot": "p1-s08",
+    "seconds": 6.5,
+    "move": "arc_r",
+    "cap": [
+     "F-204 \u00b7 02",
+     "Informal living"
+    ],
+    "t": "dissolve"
+   },
+   {
+    "shot": "p2-s06",
+    "seconds": 7.4,
+    "move": "truck_r",
+    "cap": [
+     "F-1002 \u00b7 02",
+     "Fluted glass threshold"
+    ]
+   }
+  ]
+ }
+}

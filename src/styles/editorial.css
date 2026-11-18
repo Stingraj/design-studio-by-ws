@@ -1,0 +1,146 @@
+/* ═══════════════════════════════════════════════════════════════
+   EDITORIAL DESIGN SYSTEM — loaded last (see docs/design-direction.md)
+   Re-maps the legacy tokens so every existing component inherits the
+   new type, colour and rhythm without a rewrite of styles.css.
+═══════════════════════════════════════════════════════════════ */
+:root {
+  /* Colour — paper, ink, stone. No gold; project accents come from data. */
+  --paper:      #f1eee8;
+  --ivory:      #f1eee8;
+  --white:      #f7f5f1;
+  --ink:        #151513;
+  --soft-ink:   #1d1d1a;
+  --card-dark:  #1d1d1a;
+  --dark-surface: #151513;
+  --stone:      #85817a;
+  --muted:      #6f6b64;   /* 4.9:1 on paper — AA for body text */
+  --line:       rgba(21, 21, 19, 0.14);
+  --line-mid:   rgba(21, 21, 19, 0.24);
+
+  /* The old gold accent becomes a quiet bronze-stone used for hairlines only */
+  --gold:       #8a7a64;
+  --gold-light: #8a7a64;
+  --gold-fade:  rgba(138, 122, 100, 0.14);
+  --line-gold:  rgba(21, 21, 19, 0.18);
+  --oxblood:    #151513;
+
+  --paper-72: rgba(241, 238, 232, 0.72);
+  --paper-45: rgba(241, 238, 232, 0.45);
+  --paper-12: rgba(241, 238, 232, 0.12);
+
+  /* Type — one display serif, one grotesk, one mono */
+  --font-display: 'Instrument Serif', 'Times New Roman', serif;
+  --font-bodoni:  var(--font-display);
+  --font-cinzel:  var(--font-display);
+  --font-garamond: var(--font-display);
+  --font-sans:    'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Fluid type scale */
+  --fs-micro: 11px;
+  --fs-small: clamp(13px, 0.85vw, 14px);
+  --fs-body:  clamp(15px, 1.05vw, 17px);
+  --fs-lead:  clamp(18px, 1.5vw, 22px);
+  --fs-h3:    clamp(24px, 2.4vw, 36px);
+  --fs-h2:    clamp(34px, 5vw, 80px);
+  --fs-h1:    clamp(44px, 8.4vw, 148px);
+
+  /* Grid & spacing — 12 col, 8px scale */
+  --gutter: clamp(16px, 4vw, 64px);
+  --col-gap: 24px;
+  --space-1: 8px;  --space-2: 16px; --space-3: 24px; --space-4: 32px;
+  --space-6: 48px; --space-8: 64px; --space-12: 96px; --space-16: 128px;
+  --section-y: clamp(96px, 14vh, 176px);
+}
+@media (max-width: 767px) { :root { --col-gap: 16px; } }
+
+/* Instrument Serif ships a single weight: never fake-bold it */
+html { font-synthesis: none; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+::selection { background: var(--ink); color: var(--paper); }
+
+/* Every display face sits at its only weight, tight and calm */
+h1, h2, h3,
+[class*="__title"], [class*="-title"], .sec-title {
+  font-weight: 400;
+  letter-spacing: -0.012em;
+}
+.sec-title { font-family: var(--font-display); font-size: var(--fs-h2); line-height: 1.02; }
+.sec-roman, .sec-sub + .sec-roman {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+.sec-sub { font-size: var(--fs-lead); line-height: 1.5; color: var(--muted); max-width: 46ch; }
+
+/* Focus — visible, monochrome */
+:focus-visible { outline: 1px solid currentColor; outline-offset: 4px; }
+
+/* Text link hover: no gold, just the rule retracting */
+.text-link:hover { color: inherit; opacity: 0.7; }
+
+/* ── Nav: quiet bar, inverted over imagery ─────────────────── */
+.nav { padding: 20px var(--gutter); }
+.nav__brand, .nav__links a, .nav__links button { letter-spacing: 0.14em; }
+
+/* ── Footer: wordmark replaces the glitch marquee ──────────── */
+.footer { background: var(--paper); border-top: 1px solid var(--line); }
+.footer__wordmark {
+  padding: var(--space-12) var(--gutter) var(--space-6);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 8.4vw, 152px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.footer__wordmark em { font-style: italic; color: var(--stone); }
+.footer__brand { font-family: var(--font-display); font-size: var(--fs-h3); font-weight: 400; }
+.footer__label { color: var(--stone); }
+.footer__bottom { color: var(--muted); }
+
+/* ── Retired effects (kept off even if markup lingers) ─────── */
+.tilt-card, .tilt-card:hover { transform: none !important; }
+[class*="glitch"] { animation: none !important; text-shadow: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* Images carry width/height attributes (no layout shift); let CSS own the
+   rendered height. :where() keeps this at zero specificity so explicit
+   cover rules (height: 100%) still win. */
+:where(img[height]) { height: auto; }
+
+/* ── Contrast: WCAG AA (4.5:1) for the small mono labels ──────────────
+   No single mid-grey passes on both paper and ink, so the mid-tones are
+   set for paper here and lifted inside every dark surface below. */
+:root {
+  --stone: #6b675f;        /* 4.9:1 on paper, 5.2:1 on white */
+  --gold: #6e6250;         /* 5.1:1 on paper */
+  --gold-light: #6e6250;
+}
+.home-film, .cta-band, .contact, .elite-invite-sec, .stack-panel--dark,
+.lightbox, .film-player, .projects-grid__head, .film__copy, .studio-practice, .contact-hero, .films, .service-sequence {
+  --stone: #9a958c;        /* 6.1:1 on ink */
+  --gold: #a89a84;         /* 6.6:1 on ink */
+  --gold-light: #a89a84;
+  --muted: #9a958c;
+}
+.contact .kicker, .contact__header .kicker, .contact__info-item span, .form-field label,
+.projects-grid__head .kicker, .film__copy .kicker { color: rgba(241, 238, 232, 0.66); }
+.work__facts dt { opacity: 0.72; }
+.work__index { color: var(--ink); }
+
+/* Placeholder while a lazy route loads: holds the page open so the footer
+   doesn't paint at the top and then jump (CLS). */
+.route-loading { min-height: 100svh; }

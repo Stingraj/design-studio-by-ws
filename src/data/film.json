@@ -1,0 +1,136 @@
+{
+  "chapters": [
+    {
+      "key": "f204",
+      "start": 0.0,
+      "duration": 150.5,
+      "rooms": [
+        {
+          "t": 0.0,
+          "label": "Opening"
+        },
+        {
+          "t": 6.6,
+          "label": "F-204"
+        },
+        {
+          "t": 11.2,
+          "label": "Formal living"
+        },
+        {
+          "t": 31.8,
+          "label": "Informal living"
+        },
+        {
+          "t": 52.8,
+          "label": "Dining"
+        },
+        {
+          "t": 62.4,
+          "label": "Master bedroom"
+        },
+        {
+          "t": 93.0,
+          "label": "Guest bedroom"
+        },
+        {
+          "t": 111.6,
+          "label": "Kids bedroom"
+        },
+        {
+          "t": 131.2,
+          "label": "Kitchen"
+        },
+        {
+          "t": 141.2,
+          "label": "Crockery unit"
+        },
+        {
+          "t": 149.8,
+          "label": "F-1002"
+        }
+      ]
+    },
+    {
+      "key": "f1002",
+      "start": 150.5,
+      "duration": 149.7,
+      "rooms": [
+        {
+          "t": 0.0,
+          "label": "F-1002"
+        },
+        {
+          "t": 3.9,
+          "label": "Formal living"
+        },
+        {
+          "t": 14.9,
+          "label": "Fluted glass threshold"
+        },
+        {
+          "t": 35.5,
+          "label": "Informal living"
+        },
+        {
+          "t": 55.1,
+          "label": "Dining"
+        },
+        {
+          "t": 74.7,
+          "label": "Children's bedroom"
+        },
+        {
+          "t": 93.3,
+          "label": "Guest bedroom"
+        },
+        {
+          "t": 102.9,
+          "label": "Master bedroom"
+        },
+        {
+          "t": 112.5,
+          "label": "Kitchen"
+        },
+        {
+          "t": 131.1,
+          "label": "Balcony"
+        }
+      ]
+    }
+  ],
+  "hero": {
+    "start": 177.45,
+    "length": 7.0
+  },
+  "whatwedo": {
+    "key": "whatwedo",
+    "duration": 77.1,
+    "rooms": [
+      {
+        "t": 0.0,
+        "label": "What we do"
+      },
+      {
+        "t": 3.1,
+        "label": "Residential Architecture",
+        "slug": "residential-architecture"
+      },
+      {
+        "t": 22.7,
+        "label": "Interior Architecture",
+        "slug": "interior-architecture"
+      },
+      {
+        "t": 42.3,
+        "label": "Bespoke Joinery",
+        "slug": "bespoke-joinery"
+      },
+      {
+        "t": 61.9,
+        "label": "3D Visualisation",
+        "slug": "3d-visualisation"
+      }
+    ]
+  }
+}

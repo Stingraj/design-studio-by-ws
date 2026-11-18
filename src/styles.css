@@ -3,7 +3,7 @@
    Typography: Cinzel, Bodoni Moda, Cormorant Garamond, Inter, JetBrains Mono
 ═══════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700&family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,300&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Fonts load once from index.html (Instrument Serif, Inter Tight, JetBrains Mono). */
 
 /* ── Tokens ───────────────────────────────────────────────── */
 :root {
@@ -1957,7 +1957,7 @@ button {
 
 .companies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
   gap: 32px;
   max-width: 1440px;
   margin: 0 auto;
@@ -2826,3 +2826,9 @@ button {
   .uploader-grid { grid-template-columns: 1fr; }
   .portal-fullscreen { padding: 24px 16px 60px; }
 }
+
+/* Team — typographic index (no portraits; see TeamSection.jsx) */
+.team-card--index { padding-top: 28px; border-top: 1px solid currentColor; transform: none; }
+.team-card--index:hover { transform: none; }
+.team-card__index { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; opacity: 0.6; margin-bottom: 28px; }
+ul.team-card__tags { list-style: none; padding: 0; margin: 0; }

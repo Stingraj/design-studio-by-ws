@@ -1,0 +1,206 @@
+const p1 = (n) => `/projects/project-1/slide-${String(n).padStart(2, '0')}.jpg`;
+const p2 = (n) => `/projects/project-2/slide-${String(n).padStart(2, '0')}.jpg`;
+// Clean render crops (slide labels removed) — client renders only, never stock.
+const r1 = (n) => `/projects/project-1/renders/s${String(n).padStart(2, '0')}.jpg`;
+const r2 = (n) => `/projects/project-2/renders/s${String(n).padStart(2, '0')}.jpg`;
+
+export const SERVICES = [
+  {
+    slug: 'residential-architecture',
+    num: 'I',
+    title: 'Residential Architecture',
+    short: 'Private homes planned from the site outward.',
+    tagline: 'Plans that begin with orientation, light and the way a family actually lives.',
+    intro: [
+      'Every residence starts with the site: its sun path, its edges, its views and its constraints. We test planning options against daily routines before a single elevation is drawn, so that proportion and circulation are settled early and never compromised later.',
+      'From apartments being re-planned to independent homes, the studio carries one discipline from the first sketch to the final drawing set — spatial clarity, measured volumes and a material palette chosen to age well.',
+    ],
+    hero: r2(6),
+    heroAlt: 'Fluted glass partition opening onto the living room of residence F-1002, Hyderabad',
+    scope: [
+      'Site and orientation study',
+      'Space planning and zoning',
+      'Layout options with circulation analysis',
+      'Elevation and façade direction',
+      'Lighting and services coordination',
+      'Construction drawing sets',
+    ],
+    deliverables: ['Measured survey', 'Zoning diagrams', 'Furniture layouts', 'Working drawings'],
+    approach: [
+      { title: 'Read the site', text: 'Orientation, daylight, privacy and approach are mapped before planning begins.' },
+      { title: 'Plan the routine', text: 'Layouts are tested against how the household moves through a day, not just room counts.' },
+      { title: 'Fix the volume', text: 'Ceiling heights, thresholds and sightlines are resolved so interiors have a calm frame to sit in.' },
+    ],
+    gallery: {
+      variant: 'strip',
+      images: [
+        { src: p1(3), caption: 'Floor plan · F-204' },
+        { src: p2(3), caption: 'Floor plan · F-1002' },
+        { src: r1(8), caption: 'Informal living · F-204' },
+        { src: r1(10), caption: 'Living to dining axis · F-204' },
+        { src: r2(9), caption: 'Informal living · F-1002' },
+      ],
+    },
+    projects: ['01', '02'],
+    inquiry: 'residential',
+  },
+  {
+    slug: 'interior-architecture',
+    num: 'II',
+    title: 'Interior Architecture',
+    short: 'Interiors resolved as architecture, not decoration.',
+    tagline: 'Ceilings, walls, light and furniture designed as one continuous system.',
+    intro: [
+      'We treat the interior as a built layer of the architecture. False ceilings carry cove lighting that is planned with the furniture layout; wall panelling hides storage and services; partitions in fluted glass or stone shape thresholds without closing rooms.',
+      'The result is a home where every surface has a reason to be there — and where restraint is the luxury.',
+    ],
+    hero: p2(5),
+    heroAlt: 'Formal living room with fluted glass partition and curved seating',
+    scope: [
+      'Room-by-room interior layouts',
+      'False ceiling and cove lighting design',
+      'Wall paneling and feature walls',
+      'Material, finish and colour palette',
+      'Loose furniture and lighting selection',
+      'Styling and art placement',
+    ],
+    deliverables: ['Interior layouts', 'Ceiling and lighting plans', 'Elevations per wall', 'Finish schedules'],
+    approach: [
+      { title: 'One palette', text: 'A limited set of materials is carried through the whole home so rooms feel related.' },
+      { title: 'Light as structure', text: 'Indirect light is drawn with the ceiling, so it shapes volume instead of just filling it.' },
+      { title: 'Hidden function', text: 'Storage, wiring and services are absorbed into panelling and joinery.' },
+    ],
+    gallery: {
+      variant: 'strip',
+      images: [
+        { src: p2(5), caption: 'Formal living · F-1002' },
+        { src: p2(6), caption: 'Fluted glass threshold' },
+        { src: p2(10), caption: 'Informal living' },
+        { src: p2(13), caption: 'Dining under sculpted light' },
+        { src: p1(5), caption: 'Formal living · F-204' },
+        { src: p1(9), caption: 'Living to dining axis' },
+        { src: p1(12), caption: 'Master bedroom' },
+        { src: p2(23), caption: 'Master bedroom · F-1002' },
+      ],
+    },
+    projects: ['02', '01'],
+    inquiry: 'interior',
+  },
+  {
+    slug: 'bespoke-joinery',
+    num: 'III',
+    title: 'Bespoke Joinery',
+    short: 'Wardrobes, kitchens and millwork by WS Atelier Joinery.',
+    tagline: 'Custom millwork drawn in-house and built to the millimetre.',
+    intro: [
+      'Joinery is where an interior is either resolved or compromised. Through WS Atelier Joinery, our in-house millwork practice, wardrobes, kitchens, vanities, pooja units and wall systems are detailed by the same team that designs the room.',
+      'Shutter lines align with ceiling coves, handles are chosen for the hand as much as the eye, and veneers are book-matched across doors so a wall of storage reads as a single surface.',
+    ],
+    hero: r2(27),
+    heroAlt: 'Sage green handleless kitchen with marble counters, residence F-1002, Hyderabad',
+    scope: [
+      'Wardrobes and walk-in dressing',
+      'Handleless and framed kitchens',
+      'Pooja units and display niches',
+      'TV, study and wall storage systems',
+      'Veneer, lacquer and glass shutters',
+      'Hardware and fitting specification',
+    ],
+    deliverables: ['Shop drawings', 'Shutter and grain layouts', 'Hardware schedule', 'Site installation'],
+    approach: [
+      { title: 'Draw every joint', text: 'Shop drawings resolve each carcass, shutter gap and edge profile before fabrication.' },
+      { title: 'Match the grain', text: 'Veneers are sequenced across shutters so storage walls read as one calm plane.' },
+      { title: 'Fit on site', text: 'Installation is supervised against the drawings, with final alignment done by hand.' },
+    ],
+    gallery: {
+      variant: 'bento',
+      images: [
+        { src: p1(15), caption: 'Glass-front wardrobe' },
+        { src: p2(27), caption: 'Sage handleless kitchen' },
+        { src: p1(29), caption: 'Crockery and display unit' },
+        { src: p2(30), caption: 'Pooja unit' },
+        { src: p1(20), caption: 'Open dressing' },
+        { src: p2(16), caption: 'Panelled bed wall' },
+        { src: p1(27), caption: 'Grey L-kitchen' },
+      ],
+    },
+    projects: ['01', '02'],
+    venture: 'WS Atelier Joinery',
+    inquiry: 'interior',
+  },
+  {
+    slug: '3d-visualisation',
+    num: 'IV',
+    title: '3D Visualisation',
+    short: 'Photoreal presentations before anything is built.',
+    tagline: 'Every room seen, questioned and approved before site work begins.',
+    intro: [
+      'Each commission is presented as a complete 3D presentation: a floor plan key, then every room rendered from multiple angles with its finishes, lighting and furniture in place. Clients approve rooms one by one, on the same document the site team builds from.',
+      'It removes guesswork. Decisions about marble veining, shutter colour or the height of a cove are made on screen, where changing them costs nothing.',
+    ],
+    hero: p1(8),
+    heroAlt: 'Rendered informal living room with marble feature wall',
+    scope: [
+      'Room-by-room photoreal renders',
+      'Floor plan keys for each space',
+      'Material and lighting studies',
+      'Revision rounds per room',
+      'Approval-ready presentation decks',
+      'Walkthrough and transformation films',
+    ],
+    deliverables: ['3D presentation deck', 'Per-room approvals', 'Render revisions', 'Motion studies'],
+    approach: [
+      { title: 'Key the plan', text: 'Each section of the deck opens with the floor plan, highlighting the room being reviewed.' },
+      { title: 'Render honestly', text: 'Specified materials, real fixture sizes and planned lighting temperatures are used in every view.' },
+      { title: 'Approve per room', text: 'Rooms are signed off individually so execution can begin in sequence.' },
+    ],
+    gallery: {
+      variant: 'strip',
+      images: [
+        { src: p1(7), caption: 'Plan key · informal living' },
+        { src: p1(8), caption: 'Informal living render' },
+        { src: p1(10), caption: 'Dining render' },
+        { src: p2(22), caption: 'Plan key · master bedroom' },
+        { src: p2(24), caption: 'Master bedroom render' },
+        { src: p2(31), caption: 'Balcony render' },
+      ],
+    },
+    sequence: true,
+    projects: ['01', '02'],
+    inquiry: 'interior',
+  },
+  {
+    slug: 'hospitality-workplace',
+    num: 'V',
+    title: 'Hospitality & Workplace',
+    short: 'Restaurants, offices and commercial interiors.',
+    tagline: 'The same restraint, scaled for spaces that host many people.',
+    intro: [
+      'Commercial spaces need to carry a brand, a crowd and a long working day. We bring the studio’s residential discipline — honest materials, layered light, carefully planned circulation — to restaurants, lounges, studios and offices.',
+      'Planning starts with operations: service routes, acoustic zoning, durable finishes and lighting scenes that move from day to evening.',
+    ],
+    // No commercial client work is published yet, so this page stays typographic:
+    // no hero image and no gallery rather than stock photography.
+    hero: null,
+    heroAlt: '',
+    scope: [
+      'Operational and circulation planning',
+      'Brand-led interior concepts',
+      'Acoustic and lighting scenes',
+      'Durable, maintainable finishes',
+      'Custom counters and fixtures',
+      'Contractor coordination',
+    ],
+    deliverables: ['Concept direction', 'Layouts and zoning', 'Fixture drawings', 'Finish and FF&E schedules'],
+    approach: [
+      { title: 'Start with operations', text: 'Service routes, staff flow and guest journeys define the plan before the look does.' },
+      { title: 'Zone by sound and light', text: 'Acoustic absorption and lighting scenes are planned zone by zone.' },
+      { title: 'Specify for wear', text: 'Finishes are chosen to age well under commercial use, not just to photograph well.' },
+    ],
+    gallery: null,
+    projects: [],
+    inquiry: 'hospitality',
+  },
+];
+
+export const getService = (slug) => SERVICES.find((s) => s.slug === slug);

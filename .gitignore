@@ -6,3 +6,28 @@ dist
 .vercel
 tmp
 dist-copy-test
+
+# Secrets & local
+.env*
+!.env.example
+.playwright-cli/
+.DS_Store
+
+# Film pipeline (heavy, regenerable)
+film/renders/
+film/master/
+film/.venv/
+film/models/
+film/depth/
+film/plates/
+film/preview/
+film/tests/
+film/*.log
+*.blend1
+
+# QA artifacts
+qa/node_modules/
+qa/baseline/
+qa/shots/
+qa/*.log
+__pycache__/

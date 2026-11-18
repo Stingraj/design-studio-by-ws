@@ -1,0 +1,11 @@
+{
+  "name": "dsws-qa",
+  "private": true,
+  "type": "module",
+  "description": "QA harness: route screenshots, Lighthouse, axe. Not part of the site build.",
+  "devDependencies": {
+    "axe-core": "^4",
+    "lighthouse": "^12",
+    "playwright-core": "^1"
+  }
+}
