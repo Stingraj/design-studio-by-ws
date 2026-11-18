@@ -130,7 +130,7 @@ h1, h2, h3,
   --gold-light: #6e6250;
 }
 .home-film, .cta-band, .contact, .elite-invite-sec, .stack-panel--dark,
-.lightbox, .film-player, .projects-grid__head, .film__copy, .studio-practice, .contact-hero, .films, .service-sequence {
+.lightbox, .film-player, .projects-grid__head, .film__copy, .studio-practice, .contact-hero, .films, .service-sequence, .menu-overlay {
   --stone: #9a958c;        /* 6.1:1 on ink */
   --gold: #a89a84;         /* 6.6:1 on ink */
   --gold-light: #a89a84;
@@ -144,3 +144,7 @@ h1, h2, h3,
 /* Placeholder while a lazy route loads: holds the page open so the footer
    doesn't paint at the top and then jump (CLS). */
 .route-loading { min-height: 100svh; }
+
+/* Nav: a solid ink bar. The legacy `mix-blend-mode: difference` turned the
+   paper text mid-grey over photographs (unreadable over the hero and covers). */
+.nav { mix-blend-mode: normal; background: var(--ink); --gold: #a89a84; --gold-light: #a89a84; }
